@@ -61,13 +61,43 @@ ul {
 li {
   background-color: #f9f9f9;
   margin: 5px 0;
-  padding: 10px;
+  padding: 10 px;
   border-radius: 4px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
 }
 
 li input[type='checkbox'] {
   margin-right: 10px;
+}
+
+.task-item {
+  background-color: #f9f9f9;
+  margin: 10px 0; /* Increased margin for more spacing */
+  padding: 15px; /* Increased padding for more spacing */
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.task-item:hover {
+  background-color: #e0e0e0;
+}
+
+.label {
+  font-weight: bold;
+  font-size: 1.2em;
+  color: #333;
+}
+
+.task-date {
+  margin-right: 15px;
+}
+
+.task-title {
+  margin-right: 15px;
+}
+
+.task-desc {
+  color: #555;
 }

@@ -66,6 +66,19 @@ button:hover {
   background-color: rgb(90, 69, 160);
 }
 
+#reset {
+  background-color: #ff1010;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+#reset:hover {
+  background-color: #a92222;
+}
+
 ul {
   list-style-type: none;
   padding: 0;

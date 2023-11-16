@@ -53,6 +53,19 @@ button:hover {
   background-color: #45a049;
 }
 
+#update {
+  background-color: #1040ff;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+#update:hover {
+  background-color: rgb(90, 69, 160);
+}
+
 ul {
   list-style-type: none;
   padding: 0;
@@ -100,4 +113,8 @@ li input[type='checkbox'] {
 
 .task-desc {
   color: #555;
+}
+
+.invisible {
+  display: none;
 }

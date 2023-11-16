@@ -25,7 +25,9 @@
       <label for="dueDate">Due Date:</label>
       <input type="date" id="dueDate">
 
-      <button type="button" onclick="addTaskHandler()">Add Task</button>
+      <button type="button" id="add" onclick="addTaskHandler()">Add Task</button>
+      <button type="button" id="update" onclick="updateTaskHandler()" class="update invisible">Update
+        Task</button>
     </form>
 
     <!-- Task list -->

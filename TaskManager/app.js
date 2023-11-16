@@ -2,10 +2,21 @@ const taskTitleField = document.getElementById('taskTitle');
 const taskDescField = document.getElementById('taskDescription');
 const dueDateField = document.getElementById('dueDate');
 const taskList = document.getElementById('taskList');
+const addBtn = document.getElementById('add');
+const updateBtn = document.getElementById('update');
 let task = {};
+let taskId;
 
 // localStorage.clear();
 // console.log(localStorage);
+
+function taskHTML(task) {
+  return `
+      <span class="label">Date:</span> <span class="task-date">${task.dueDate}</span><br>
+      <span class="label">Title:</span> <span class="task-title">${task.taskTitle}</span><br>
+      <span class="label">Description:</span> <span class="task-desc">${task.taskDesc}</span>
+    `;
+}
 
 if (localStorage.lengh != 0) {
   Object.keys(localStorage).forEach((key) => {
@@ -30,11 +41,8 @@ function addTask(task) {
   newTask.setAttribute('onclick', `editTask(${task.taskId})`);
   newTask.classList.add('task-item'); // Add a class for styling
   // Using innerHTML to structure the task item with labeled descriptions and increased spacing
-  newTask.innerHTML = `
-      <span class="label">Date:</span> <span class="task-date">${task.dueDate}</span><br>
-      <span class="label">Title:</span> <span class="task-title">${task.taskTitle}</span><br>
-      <span class="label">Description:</span> <span class="task-desc">${task.taskDesc}</span>
-    `;
+
+  newTask.innerHTML = taskHTML(task);
   taskList.appendChild(newTask);
 }
 
@@ -48,16 +56,45 @@ const addTaskHandler = () => {
   if (taskCheck(task)) {
     addTask(task);
     window.localStorage.setItem(task.taskId, JSON.stringify(task));
-    // clearForm();
+    clearForm();
   } else {
     alert("Please fill all the task's fields before storing it.");
   }
 };
 
-const editTask = (taskId) => {
-  let taskLi = document.getElementById(taskId);
-  taskTitleField.value = '';
-  taskDescField.value = '';
-  dueDateField.value = '';
-  console.log(taskLi);
+const editTask = (editableTaskId) => {
+  let taskLi = document.getElementById(editableTaskId);
+  taskTitleField.value =
+    taskLi.getElementsByClassName('task-title')[0].innerText;
+  taskDescField.value = taskLi.getElementsByClassName('task-desc')[0].innerText;
+  dueDateField.value = taskLi.getElementsByClassName('task-date')[0].innerText;
+  taskId = editableTaskId;
+  if (addBtn.classList.contains('invisible')) {
+  } else {
+    addBtn.classList.toggle('invisible');
+    updateBtn.classList.toggle('invisible');
+  }
 };
+
+const updateTaskHandler = () => {
+  task = {
+    taskId: taskId,
+    taskTitle: taskTitleField.value,
+    taskDesc: taskDescField.value,
+    dueDate: dueDateField.value,
+  };
+  if (taskCheck(task)) {
+    updateTask(taskId, task);
+  } else {
+    alert("Please fill all the task's fields before storing it.");
+  }
+};
+
+function updateTask(taskId, task) {
+  const editedLi = document.getElementById(taskId);
+  editedLi.innerHTML = taskHTML(task);
+  window.localStorage.setItem(taskId, JSON.stringify(task));
+  addBtn.classList.toggle('invisible');
+  updateBtn.classList.toggle('invisible');
+  clearForm();
+}

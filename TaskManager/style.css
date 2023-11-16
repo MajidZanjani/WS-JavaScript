@@ -118,14 +118,16 @@ li input[type='checkbox'] {
 
 .task-date {
   margin-right: 15px;
+  color: rgb(255, 19, 113);
 }
 
 .task-title {
   margin-right: 15px;
+  color: #18a100;
 }
 
 .task-desc {
-  color: #555;
+  color: rgb(0, 81, 255);
 }
 
 .invisible {

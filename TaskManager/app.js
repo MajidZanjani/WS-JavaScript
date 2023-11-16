@@ -15,13 +15,11 @@ function appRestart() {
   }
 }
 
-// console.log(localStorage);
-
 function taskHTML(task) {
   return `
-      <span class="label">Date:</span> <span class="task-date">${task.dueDate}</span><br>
-      <span class="label">Title:</span> <span class="task-title">${task.taskTitle}</span><br>
-      <span class="label">Description:</span> <span class="task-desc">${task.taskDesc}</span>
+      <span class="label">Date:&nbsp</span> <span class="task-date">${task.dueDate}</span><br>
+      <span class="label">Title:&nbsp</span> <span class="task-title">${task.taskTitle}</span><br>
+      <span class="label">Description:&nbsp</span> <span class="task-desc">${task.taskDesc}</span>
     `;
 }
 
@@ -36,8 +34,7 @@ function addTask(task) {
   const newTask = document.createElement('li');
   newTask.setAttribute('id', task.taskId);
   newTask.setAttribute('onclick', `editTask(${task.taskId})`);
-  newTask.classList.add('task-item'); // Add a class for styling
-  // Using innerHTML to structure the task item with labeled descriptions and increased spacing
+  newTask.classList.add('task-item');
   newTask.innerHTML = taskHTML(task);
   taskList.appendChild(newTask);
 }
@@ -105,5 +102,7 @@ if (localStorage.lengh != 0) {
 taskCheck = (task) => {
   return task.taskTitle !== '' && task.taskDesc !== '' && task.dueDate !== '';
 };
+
+console.log(localStorage);
 
 taskTitleField.focus();

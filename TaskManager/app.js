@@ -4,6 +4,8 @@ const dueDateField = document.getElementById('dueDate');
 const taskList = document.getElementById('taskList');
 const addBtn = document.getElementById('add');
 const updateBtn = document.getElementById('update');
+const resetBtn = document.getElementById('reset');
+const eraseBtn = document.getElementById('erase');
 let task = {};
 let taskId;
 
@@ -12,6 +14,13 @@ function appRestart() {
   if (restartConfirm) {
     localStorage.clear();
     location.reload();
+  }
+}
+
+function taskErase() {
+  const eraseConfirm = confirm('Do you realy want to remove this task?');
+  if (eraseConfirm) {
+    console.log(taskId);
   }
 }
 
@@ -45,6 +54,8 @@ function updateTask(taskId, task) {
   localStorage.setItem(taskId, JSON.stringify(task));
   addBtn.classList.toggle('invisible');
   updateBtn.classList.toggle('invisible');
+  eraseBtn.classList.toggle('invisible');
+  resetBtn.classList.toggle('invisible');
   clearForm();
 }
 
@@ -89,6 +100,8 @@ const editTask = (editableTaskId) => {
   } else {
     addBtn.classList.toggle('invisible');
     updateBtn.classList.toggle('invisible');
+    eraseBtn.classList.toggle('invisible');
+    resetBtn.classList.toggle('invisible');
   }
 };
 
@@ -102,7 +115,5 @@ if (localStorage.lengh != 0) {
 taskCheck = (task) => {
   return task.taskTitle !== '' && task.taskDesc !== '' && task.dueDate !== '';
 };
-
-console.log(localStorage);
 
 taskTitleField.focus();

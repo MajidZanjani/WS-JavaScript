@@ -20,7 +20,9 @@ function appRestart() {
 function taskErase() {
   const eraseConfirm = confirm('Do you realy want to remove this task?');
   if (eraseConfirm) {
-    console.log(taskId);
+    document.getElementById(taskId).remove();
+    localStorage.removeItem(taskId);
+    clearForm();
   }
 }
 
@@ -36,6 +38,12 @@ function clearForm() {
   taskTitleField.value = '';
   taskDescField.value = '';
   dueDateField.value = '';
+  if (addBtn.classList.contains('invisible')) {
+    addBtn.classList.toggle('invisible');
+    updateBtn.classList.toggle('invisible');
+    eraseBtn.classList.toggle('invisible');
+    resetBtn.classList.toggle('invisible');
+  }
   taskTitleField.focus();
 }
 
@@ -52,10 +60,6 @@ function updateTask(taskId, task) {
   const editedLi = document.getElementById(taskId);
   editedLi.innerHTML = taskHTML(task);
   localStorage.setItem(taskId, JSON.stringify(task));
-  addBtn.classList.toggle('invisible');
-  updateBtn.classList.toggle('invisible');
-  eraseBtn.classList.toggle('invisible');
-  resetBtn.classList.toggle('invisible');
   clearForm();
 }
 

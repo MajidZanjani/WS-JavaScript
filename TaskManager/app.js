@@ -10,7 +10,7 @@ let task = {};
 let taskId;
 
 function appRestart() {
-  const restartConfirm = confirm('Do you realy want to clear all the tasks?!');
+  const restartConfirm = confirm('Do you want to clear all the tasks?!');
   if (restartConfirm) {
     localStorage.clear();
     location.reload();

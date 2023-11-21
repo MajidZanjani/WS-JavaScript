@@ -7,13 +7,27 @@
   <title>Task Manager</title>
   <link rel="stylesheet" href="style.css">
   <script src="app.js" async></script>
+  <script src="user.js" async></script>
 </head>
 
 <body>
+  <div id="loginPanel">
+    <form id="loginForm">
+      <label for="userName">User Name</label>
+      <input type="text" id="userName" required>
 
-  <div id="app">
-    <button type="button" id="reset" onclick="appRestart()">Erase Task List</button>
-    <button type="button" id="erase" onclick="taskErase()" class="invisible">Erase this Task</button>
+      <label for="password">Password</label>
+      <input type="text" id="password" required>
+
+      <button type="button" id="loginBtn" class="blueButton">Login</button>
+      <button type="button" id="newUserBtn">Create User</button>
+    </form>
+  </div>
+
+  <div id="app" class="invisible">
+    <button type="button" id="reset" onclick="appRestart()" class="redButton">Erase all tasks and make a new
+      list!</button>
+    <button type="button" id="erase" onclick="taskErase()" class="invisible redButton">Erase this Task</button>
     <h1>Task Manager</h1>
 
     <!-- Form for adding tasks -->
@@ -28,7 +42,7 @@
       <input type="date" id="dueDate">
 
       <button type="button" id="add" onclick="addTaskHandler()">Add Task</button>
-      <button type="button" id="update" onclick="updateTaskHandler()" class="update invisible">Update
+      <button type="button" id="update" onclick="updateTaskHandler()" class="blueButton invisible">Update
         Task</button>
     </form>
 

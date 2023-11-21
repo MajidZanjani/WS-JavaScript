@@ -9,6 +9,14 @@ body {
   background-color: #f4f4f4;
 }
 
+#loginPanel {
+  text-align: center;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
 #app {
   text-align: center;
   background-color: #fff;
@@ -53,7 +61,7 @@ button:hover {
   background-color: #45a049;
 }
 
-#update {
+.blueButton {
   background-color: #1040ff;
   color: #fff;
   border: none;
@@ -62,11 +70,11 @@ button:hover {
   border-radius: 4px;
 }
 
-#update:hover {
+.blueButton:hover {
   background-color: rgb(90, 69, 160);
 }
 
-#reset {
+.redButton {
   background-color: #ff1010;
   color: #fff;
   border: none;
@@ -75,7 +83,7 @@ button:hover {
   border-radius: 4px;
 }
 
-#reset:hover {
+.redButton:hover {
   background-color: #a92222;
 }
 

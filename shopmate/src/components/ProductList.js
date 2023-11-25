@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { useFetch } from '../hook/useFetch';
+import Loading from '../assets/loading.gif';
 
 export const ProductList = () => {
   const [url, setUrl] = useState('http://localhost:8000/products');
-  const { data: products } = useFetch(url);
+  const { data: products, loading } = useFetch(url);
 
   return (
     <section>
@@ -17,6 +18,11 @@ export const ProductList = () => {
           In Stock Only
         </button>
       </div>
+      {loading && (
+        <p className="loading">
+          <img src={Loading} alt="loading..." />
+        </p>
+      )}
       {products &&
         products.map((product) => (
           <div className="card" key={product.id}>

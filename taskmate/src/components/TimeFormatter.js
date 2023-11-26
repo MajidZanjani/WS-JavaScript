@@ -17,13 +17,18 @@ export const TimeFormatter = (inputTime) => {
     result = `${formattedTime} ${formattedDate}`;
   } else {
     const [time, apm, date] = inputTime.split(' ');
-    const [hour, minute] = time.split(':');
-    const [day, month, year] = date.split('/');
-    const isPM = apm === 'PM';
-    const formattedHour = isPM
-      ? (parseInt(hour, 10) + 12).toString().padStart(2, '0')
-      : hour;
-    result = `${year}-${month}-${day}T${formattedHour}:${minute}`;
+    let [hour, minute] = time.split(':');
+    let [day, month, year] = date.split('/');
+    if (apm === 'PM') {
+      hour = (parseInt(hour) + 12).toString();
+    }
+    if (day.length === 1) {
+      day = '0' + day;
+    }
+    if (month.length === 1) {
+      month = '0' + month;
+    }
+    result = `${year}-${month}-${day}T${hour}:${minute}`;
   }
 
   return result;

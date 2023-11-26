@@ -1,10 +1,19 @@
 import { TimeFormatter } from './TimeFormatter';
 
-export const ShowTask = ({ taskList, setTaskList, task, setTask }) => {
+export const ShowTask = ({
+  taskList,
+  setTaskList,
+  task,
+  setTask,
+  dueDate,
+  setDueDate,
+}) => {
   const handleEdit = (id) => {
     const selectedTask = taskList.find((todo) => todo.id === id);
     console.log(selectedTask);
     setTask(selectedTask);
+    setDueDate(TimeFormatter(selectedTask.dueDate));
+    console.log(TimeFormatter(selectedTask.dueDate));
   };
 
   const handleDelete = (id) => {
@@ -28,7 +37,7 @@ export const ShowTask = ({ taskList, setTaskList, task, setTask }) => {
           <li key={task.id}>
             <p>
               <span className="name">{task.name}</span>
-              <span className="time">{task.dueDate}</span>
+              <span className="dueDate">{task.dueDate}</span>
             </p>
             <i
               onClick={() => handleEdit(task.id)}

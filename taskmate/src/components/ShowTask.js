@@ -13,7 +13,6 @@ export const ShowTask = ({
     console.log(selectedTask);
     setTask(selectedTask);
     setDueDate(TimeFormatter(selectedTask.dueDate));
-    console.log(TimeFormatter(selectedTask.dueDate));
   };
 
   const handleDelete = (id) => {

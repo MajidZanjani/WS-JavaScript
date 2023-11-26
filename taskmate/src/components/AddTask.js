@@ -15,27 +15,37 @@ export const AddTask = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const idTime = new Date();
-    if (tempD) {
-      const date = TimeFormatter(dueDate);
-      const updatedTaskList = taskList.map((todo) =>
-        todo.id === task.id
-          ? { id: task.id, name: task.name, dueDate: date }
-          : todo
-      );
-      setTaskList(updatedTaskList);
-      setTask({});
-      setDueDate('');
+    if (task.name) {
+      const idTime = new Date();
+      //Editing an existing Task
+      if (tempD) {
+        const date = dueDate
+          ? TimeFormatter(dueDate)
+          : TimeFormatter(TimeFormatter(idTime));
+        const updatedTaskList = taskList.map((todo) =>
+          todo.id === task.id
+            ? { id: task.id, name: task.name, dueDate: date }
+            : todo
+        );
+        setTaskList(updatedTaskList);
+        setTask({});
+        setDueDate('');
+      } //Adding new Task
+      else {
+        const date = e.target.dueDate.value
+          ? TimeFormatter(e.target.dueDate.value)
+          : TimeFormatter(TimeFormatter(idTime));
+        const newTask = {
+          id: idTime.getTime(),
+          name: e.target.task.value,
+          dueDate: date,
+        };
+        setTaskList([...taskList, newTask]);
+        setTask({});
+        setDueDate('');
+      }
     } else {
-      const date = TimeFormatter(e.target.dueDate.value);
-      const newTask = {
-        id: idTime.getTime(),
-        name: e.target.task.value,
-        dueDate: date,
-      };
-      setTaskList([...taskList, newTask]);
-      setTask({});
-      setDueDate('');
+      alert('Please fill the task description.');
     }
   };
 
@@ -57,7 +67,7 @@ export const AddTask = ({
           value={dueDate}
           onChange={(e) => setDueDate(e.target.value)}
         />
-        <button type="submit">Add</button>
+        <button type="submit">{task.id ? 'Update' : 'Add'}</button>
       </form>
     </section>
   );

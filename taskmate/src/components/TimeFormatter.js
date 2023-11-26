@@ -1,6 +1,15 @@
 export const TimeFormatter = (inputTime) => {
   let result;
-  if (inputTime.search('T') !== -1) {
+  if (typeof inputTime === 'object') {
+    const dDate = inputTime.toLocaleDateString();
+    const dTime = inputTime.toLocaleTimeString();
+    let [month, day, year] = dDate.split('/');
+    let [hour, minute] = dTime.split(':');
+    if (dTime.search('PM') !== -1) {
+      hour = (parseInt(hour) + 12).toString();
+    }
+    result = `${year}-${month}-${day}T${hour}:${minute}`;
+  } else if (inputTime.search('T') !== -1) {
     const parsedTime = new Date(inputTime);
     const hours = parsedTime.getHours();
     const minutes = parsedTime.getMinutes();
